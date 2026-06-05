@@ -138,7 +138,17 @@ function renderHtml() {
     font-size: .9rem; cursor: pointer; overflow-x: auto; transition: border-color .15s;
   }
   code:hover { border-color: var(--accent); }
+  code { position: relative; }
   code.copied { border-color: #3fb950; }
+  code.copied::after {
+    content: "copied ✓"; position: absolute; top: .45rem; right: .6rem;
+    font-size: .72rem; color: #3fb950; background: var(--code); padding: 0 .35rem;
+  }
+  code.failed { border-color: #f85149; }
+  code.failed::after {
+    content: "press ⌘/Ctrl+C"; position: absolute; top: .45rem; right: .6rem;
+    font-size: .72rem; color: #f85149; background: var(--code); padding: 0 .35rem;
+  }
   .repo { display: inline-block; margin-top: .8rem; color: var(--muted); text-decoration: none; font-size: .85rem; }
   .repo:hover { color: var(--accent); }
   footer { margin-top: 2.5rem; color: var(--muted); font-size: .85rem; text-align: center; }
@@ -155,13 +165,34 @@ function renderHtml() {
     </footer>
   </main>
 <script>
+  // Copy with the async Clipboard API when available (needs a secure context),
+  // falling back to a hidden textarea + execCommand for older/locked-down
+  // browsers. Returns whether the copy succeeded.
+  async function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      try { await navigator.clipboard.writeText(text); return true; }
+      catch (e) { /* fall through to legacy path */ }
+    }
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.top = "-9999px";
+      document.body.appendChild(ta);
+      ta.select();
+      const ok = document.execCommand("copy");
+      ta.remove();
+      return ok;
+    } catch (e) { return false; }
+  }
+
   document.querySelectorAll("code[data-copy]").forEach((el) => {
     el.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(el.dataset.copy);
-        el.classList.add("copied");
-        setTimeout(() => el.classList.remove("copied"), 900);
-      } catch (e) { /* clipboard unavailable */ }
+      el.classList.remove("copied", "failed");
+      const ok = await copyText(el.dataset.copy);
+      el.classList.add(ok ? "copied" : "failed");
+      setTimeout(() => el.classList.remove("copied", "failed"), 1400);
     });
   });
 </script>
