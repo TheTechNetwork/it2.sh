@@ -29,7 +29,7 @@ const SERVICES = [
       { label: "Windows (PowerShell)", cmd: "irm speed.it2.sh | iex" },
       { label: "Linux / macOS (bash)", cmd: "curl -sL speed.it2.sh | bash" },
     ],
-    repo: "https://github.com/TheTechNetwork/speedtest-pwsh",
+    repo: "https://github.com/TheTechNetwork/speed.it2.sh",
   },
   {
     host: "hwid.it2.sh",
@@ -39,10 +39,17 @@ const SERVICES = [
       { label: "Windows (PowerShell)", cmd: "irm hwid.it2.sh/TheTechNetwork | iex" },
     ],
     repo: "https://github.com/TheTechNetwork/hwid.it2.sh",
+    // The served script's canonical home — the Worker fetches it live from here.
+    refs: [
+      { label: "script", url: "https://github.com/TheTechNetwork/Scripts-Public/blob/main/EndpointManager/Enrollment/Generate-AppRegistrationHWID.ps1" },
+    ],
   },
 ];
 
 const TAGLINE = "One-line tools, short URLs. The it2.sh command reference.";
+
+// This site's own source repo.
+const REPO = "https://github.com/TheTechNetwork/it2.sh";
 
 // ---------------------------------------------------------------------------
 // Plain-text view — what terminals (curl / irm / wget) get.
@@ -60,11 +67,13 @@ function renderText() {
       lines.push(`      ${c.cmd}`);
     }
     if (s.repo) lines.push(`    Source: ${s.repo}`);
+    if (s.refs) for (const r of s.refs) lines.push(`    ${r.label[0].toUpperCase() + r.label.slice(1)}: ${r.url}`);
     lines.push("");
   }
   lines.push("-".repeat(60));
   lines.push("Re-run anytime:  irm it2.sh  (Windows)   curl -sL it2.sh  (Linux/macOS)");
   lines.push("Open https://it2.sh in a browser for the full link tree.");
+  lines.push(`This site's source: ${REPO}`);
   lines.push("");
   return lines.join("\n");
 }
@@ -85,9 +94,12 @@ function renderHtml() {
           <span class="cmd-label">${escapeHtml(c.label)}</span>
           <code data-copy="${escapeHtml(c.cmd)}">${escapeHtml(c.cmd)}</code>
         </div>`).join("");
-    const repo = s.repo
-      ? `<a class="repo" href="${escapeHtml(s.repo)}" target="_blank" rel="noopener">source ↗</a>`
-      : "";
+    const links = [];
+    if (s.repo) links.push({ label: "source", url: s.repo });
+    if (s.refs) for (const r of s.refs) links.push(r);
+    const repo = links
+      .map((l) => `<a class="repo" href="${escapeHtml(l.url)}" target="_blank" rel="noopener">${escapeHtml(l.label)} ↗</a>`)
+      .join("");
     return `
       <article class="card">
         <header>
@@ -149,7 +161,7 @@ function renderHtml() {
     content: "press ⌘/Ctrl+C"; position: absolute; top: .45rem; right: .6rem;
     font-size: .72rem; color: #f85149; background: var(--code); padding: 0 .35rem;
   }
-  .repo { display: inline-block; margin-top: .8rem; color: var(--muted); text-decoration: none; font-size: .85rem; }
+  .repo { display: inline-block; margin-top: .8rem; margin-right: 1.1rem; color: var(--muted); text-decoration: none; font-size: .85rem; }
   .repo:hover { color: var(--accent); }
   footer { margin-top: 2.5rem; color: var(--muted); font-size: .85rem; text-align: center; }
   footer a { color: var(--accent); text-decoration: none; }
@@ -162,6 +174,7 @@ function renderHtml() {
     ${cards}
     <footer>
       Click any command to copy &middot; terminals get a plain-text view via <code data-copy="irm it2.sh" style="display:inline;padding:.1rem .35rem">irm it2.sh</code> / <code data-copy="curl -sL it2.sh" style="display:inline;padding:.1rem .35rem">curl -sL it2.sh</code>
+      <br><a href="${escapeHtml(REPO)}" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none">it2.sh source ↗</a>
     </footer>
   </main>
 <script>

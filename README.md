@@ -32,6 +32,15 @@ command is one click to copy.
 > The table above is the human copy; the live, always-current list is generated
 > from the `SERVICES` registry in [`worker/index.js`](worker/index.js).
 
+## Repositories
+
+| Repo | Role |
+| --- | --- |
+| [`it2.sh`](https://github.com/TheTechNetwork/it2.sh) | This site — the root link tree / command reference |
+| [`speed.it2.sh`](https://github.com/TheTechNetwork/speed.it2.sh) | Worker behind `speed.it2.sh` |
+| [`hwid.it2.sh`](https://github.com/TheTechNetwork/hwid.it2.sh) | Worker behind `hwid.it2.sh` |
+| [`Scripts-Public`](https://github.com/TheTechNetwork/Scripts-Public) | Canonical home of the scripts these workers serve (e.g. the HWID script) |
+
 ## How it works
 
 - A Cloudflare Worker is bound to the root `it2.sh` custom domain.
