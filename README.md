@@ -5,9 +5,15 @@ subdomain and runs in a single command; **`it2.sh` itself is the link tree /
 quick command reference** that ties them all together — a tidy, self-hosted
 replacement for a pile of `bit.ly` links.
 
+```powershell
+# Windows (PowerShell) — plain-text cheat-sheet of every command
+irm it2.sh
+```
+
 ```bash
-# In a terminal — plain-text cheat-sheet of every command
-curl it2.sh
+# Linux / macOS — note the https:// (a bare http URL redirects, which
+# Windows' curl.exe won't follow — that's why Windows uses irm above)
+curl -sL https://it2.sh
 ```
 
 Open <https://it2.sh> in a browser and you get a styled link tree where every
