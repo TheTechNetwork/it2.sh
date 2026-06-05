@@ -63,6 +63,7 @@ function renderText() {
     lines.push("");
   }
   lines.push("-".repeat(60));
+  lines.push("Re-run anytime:  irm it2.sh  (Windows)   curl -sL https://it2.sh  (Linux/macOS)");
   lines.push("Open https://it2.sh in a browser for the full link tree.");
   lines.push("");
   return lines.join("\n");
@@ -150,7 +151,7 @@ function renderHtml() {
     <p class="tagline">${escapeHtml(TAGLINE)}</p>
     ${cards}
     <footer>
-      Click any command to copy &middot; terminals get a plain-text view via <code style="display:inline;padding:.1rem .35rem">curl it2.sh</code>
+      Click any command to copy &middot; terminals get a plain-text view via <code style="display:inline;padding:.1rem .35rem">irm it2.sh</code> / <code style="display:inline;padding:.1rem .35rem">curl -sL https://it2.sh</code>
     </footer>
   </main>
 <script>
