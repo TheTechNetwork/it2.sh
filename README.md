@@ -12,12 +12,12 @@ irm it2.sh
 
 ```bash
 # Linux / macOS
-curl -sL https://it2.sh
+curl -sL it2.sh
 ```
 
 > On Windows, don't use `curl` — PowerShell aliases it to `Invoke-WebRequest`,
 > which rejects the `-sL` flags. Use `irm it2.sh` (or the real binary,
-> `curl.exe -sL https://it2.sh`).
+> `curl.exe -sL it2.sh`).
 
 Open <https://it2.sh> in a browser and you get a styled link tree where every
 command is one click to copy.
@@ -31,6 +31,15 @@ command is one click to copy.
 
 > The table above is the human copy; the live, always-current list is generated
 > from the `SERVICES` registry in [`worker/index.js`](worker/index.js).
+
+## Repositories
+
+| Repo | Role |
+| --- | --- |
+| [`it2.sh`](https://github.com/TheTechNetwork/it2.sh) | This site — the root link tree / command reference |
+| [`speed.it2.sh`](https://github.com/TheTechNetwork/speed.it2.sh) | Worker behind `speed.it2.sh` |
+| [`hwid.it2.sh`](https://github.com/TheTechNetwork/hwid.it2.sh) | Worker behind `hwid.it2.sh` |
+| [`Scripts-Public`](https://github.com/TheTechNetwork/Scripts-Public) | Canonical home of the scripts these workers serve (e.g. the HWID script) |
 
 ## How it works
 
