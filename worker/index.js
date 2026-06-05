@@ -140,12 +140,12 @@ function renderHtml() {
   code:hover { border-color: var(--accent); }
   code { position: relative; }
   code.copied { border-color: #3fb950; }
-  code.copied::after {
+  .card code.copied::after {
     content: "copied ✓"; position: absolute; top: .45rem; right: .6rem;
     font-size: .72rem; color: #3fb950; background: var(--code); padding: 0 .35rem;
   }
   code.failed { border-color: #f85149; }
-  code.failed::after {
+  .card code.failed::after {
     content: "press ⌘/Ctrl+C"; position: absolute; top: .45rem; right: .6rem;
     font-size: .72rem; color: #f85149; background: var(--code); padding: 0 .35rem;
   }
@@ -161,7 +161,7 @@ function renderHtml() {
     <p class="tagline">${escapeHtml(TAGLINE)}</p>
     ${cards}
     <footer>
-      Click any command to copy &middot; terminals get a plain-text view via <code style="display:inline;padding:.1rem .35rem">irm it2.sh</code> / <code style="display:inline;padding:.1rem .35rem">curl -sL https://it2.sh</code>
+      Click any command to copy &middot; terminals get a plain-text view via <code data-copy="irm it2.sh" style="display:inline;padding:.1rem .35rem">irm it2.sh</code> / <code data-copy="curl -sL https://it2.sh" style="display:inline;padding:.1rem .35rem">curl -sL https://it2.sh</code>
     </footer>
   </main>
 <script>
