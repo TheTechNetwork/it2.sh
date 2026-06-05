@@ -12,12 +12,12 @@ irm it2.sh
 
 ```bash
 # Linux / macOS
-curl -sL https://it2.sh
+curl -sL it2.sh
 ```
 
 > On Windows, don't use `curl` — PowerShell aliases it to `Invoke-WebRequest`,
 > which rejects the `-sL` flags. Use `irm it2.sh` (or the real binary,
-> `curl.exe -sL https://it2.sh`).
+> `curl.exe -sL it2.sh`).
 
 Open <https://it2.sh> in a browser and you get a styled link tree where every
 command is one click to copy.
