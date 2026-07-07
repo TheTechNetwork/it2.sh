@@ -47,11 +47,20 @@ const SERVICES = [
   {
     host: "nuke.it2.sh",
     title: "AV Nuke",
-    blurb: "Interactive TUI that force-removes stubborn antivirus bloatware (McAfee first) — official uninstaller, then processes, services, drivers, tasks, folders, registry.",
+    blurb: "Interactive TUI that force-removes stubborn antivirus & EDR agents — 15 vendors (McAfee, Norton, Avast, Bitdefender, ESET, Kaspersky, CrowdStrike, SentinelOne, Sophos, …). Add a target in the path, e.g. nuke.it2.sh/s1.",
     cmds: [
       { label: "Windows (PowerShell, as Admin)", cmd: "irm nuke.it2.sh | iex" },
     ],
     repo: "https://github.com/TheTechNetwork/nuke.it2.sh",
+  },
+  {
+    host: "2browse.it2.sh",
+    title: "2Browse",
+    blurb: "One-line launcher for Carifred's 2Browse (fresh, isolated browser session) — downloads, runs, and cleans up after itself, with a hosted fallback copy.",
+    cmds: [
+      { label: "Windows (PowerShell)", cmd: "irm 2browse.it2.sh | iex" },
+    ],
+    repo: "https://github.com/TheTechNetwork/2browse.it2.sh",
   },
 ];
 
