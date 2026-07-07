@@ -28,7 +28,8 @@ command is one click to copy.
 | --- | --- | --- |
 | [`speed.it2.sh`](https://speed.it2.sh) | Ookla Speedtest CLI, any OS, one line | `irm speed.it2.sh \| iex` (Windows) · `curl -sL speed.it2.sh \| bash` (Linux/macOS) |
 | [`hwid.it2.sh`](https://hwid.it2.sh) | Intune Autopilot HWID app-registration, MSP name from the URL | `irm hwid.it2.sh/TheTechNetwork \| iex` |
-| [`nuke.it2.sh`](https://nuke.it2.sh) | Interactive TUI to force-remove stubborn antivirus (McAfee first) | `irm nuke.it2.sh \| iex` (Windows, as Admin) |
+| [`nuke.it2.sh`](https://nuke.it2.sh) | Interactive TUI to force-remove stubborn antivirus & EDR (15 vendors; `/s1`, `/mcafee`, `/all`, …) | `irm nuke.it2.sh \| iex` (Windows, as Admin) |
+| [`2browse.it2.sh`](https://2browse.it2.sh) | One-line launcher for Carifred's 2Browse — downloads, runs, cleans up | `irm 2browse.it2.sh \| iex` (Windows) |
 
 > The table above is the human copy; the live, always-current list is generated
 > from the `SERVICES` registry in [`worker/index.js`](worker/index.js).
@@ -41,6 +42,7 @@ command is one click to copy.
 | [`speed.it2.sh`](https://github.com/TheTechNetwork/speed.it2.sh) | Worker behind `speed.it2.sh` |
 | [`hwid.it2.sh`](https://github.com/TheTechNetwork/hwid.it2.sh) | Worker behind `hwid.it2.sh` |
 | [`nuke.it2.sh`](https://github.com/TheTechNetwork/nuke.it2.sh) | Worker + TUI behind `nuke.it2.sh` |
+| [`2browse.it2.sh`](https://github.com/TheTechNetwork/2browse.it2.sh) | Worker behind `2browse.it2.sh` |
 | [`Scripts-Public`](https://github.com/TheTechNetwork/Scripts-Public) | Canonical home of the scripts these workers serve (e.g. the HWID script) |
 
 ## How it works
