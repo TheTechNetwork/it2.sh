@@ -44,9 +44,27 @@ const SERVICES = [
       { label: "script", url: "https://github.com/TheTechNetwork/Scripts-Public/blob/main/EndpointManager/Enrollment/Generate-AppRegistrationHWID.ps1" },
     ],
   },
+  {
+    host: "nuke.it2.sh",
+    title: "AV Nuke",
+    blurb: "Interactive TUI that force-removes stubborn antivirus bloatware (McAfee first) — official uninstaller, then processes, services, drivers, tasks, folders, registry.",
+    cmds: [
+      { label: "Windows (PowerShell, as Admin)", cmd: "irm nuke.it2.sh | iex" },
+    ],
+    repo: "https://github.com/TheTechNetwork/nuke.it2.sh",
+  },
 ];
 
 const TAGLINE = "One-line tools, short URLs. The it2.sh command reference.";
+
+// Inline copy affordance shown in the corner of every command box: a clipboard
+// glyph that flips to a checkmark on a successful copy. Two stacked SVGs toggled
+// by CSS (no external assets, no JS needed to swap them).
+const COPY_ICON =
+  '<span class="copy-ic" aria-hidden="true">' +
+  '<svg class="ic-copy" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>' +
+  '<svg class="ic-check" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>' +
+  '</span>';
 
 // This site's own source repo.
 const REPO = "https://github.com/TheTechNetwork/it2.sh";
@@ -92,7 +110,7 @@ function renderHtml() {
     const cmds = s.cmds.map((c) => `
         <div class="cmd">
           <span class="cmd-label">${escapeHtml(c.label)}</span>
-          <code data-copy="${escapeHtml(c.cmd)}">${escapeHtml(c.cmd)}</code>
+          <code data-copy="${escapeHtml(c.cmd)}">${escapeHtml(c.cmd)}${COPY_ICON}</code>
         </div>`).join("");
     const links = [];
     if (s.repo) links.push({ label: "source", url: s.repo });
@@ -145,21 +163,28 @@ function renderHtml() {
   .cmd { margin: .4rem 0; }
   .cmd-label { display: block; font-size: .75rem; color: var(--muted); margin-bottom: .2rem; }
   code {
-    display: block; background: var(--code); border: 1px solid var(--border);
-    border-radius: 8px; padding: .6rem .8rem; font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+    position: relative; display: block; background: var(--code); border: 1px solid var(--border);
+    border-radius: 8px; padding: .6rem 2.4rem .6rem .8rem; font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
     font-size: .9rem; cursor: pointer; overflow-x: auto; transition: border-color .15s;
   }
   code:hover { border-color: var(--accent); }
-  code { position: relative; }
-  code.copied { border-color: #3fb950; }
-  .card code.copied::after {
-    content: "copied ✓"; position: absolute; top: .45rem; right: .6rem;
-    font-size: .72rem; color: #3fb950; background: var(--code); padding: 0 .35rem;
+  /* Copy affordance: clipboard glyph, muted until hover; flips to a green check
+     on success and a red clipboard on failure. */
+  .copy-ic {
+    position: absolute; top: 50%; right: .6rem; transform: translateY(-50%);
+    display: inline-flex; color: var(--muted); transition: color .15s; pointer-events: none;
   }
+  code:hover .copy-ic { color: var(--accent); }
+  .copy-ic .ic-check { display: none; }
+  code.copied { border-color: #3fb950; }
+  code.copied .copy-ic { color: #3fb950; }
+  code.copied .ic-copy { display: none; }
+  code.copied .ic-check { display: inline; }
   code.failed { border-color: #f85149; }
+  code.failed .copy-ic { color: #f85149; }
   .card code.failed::after {
-    content: "press ⌘/Ctrl+C"; position: absolute; top: .45rem; right: .6rem;
-    font-size: .72rem; color: #f85149; background: var(--code); padding: 0 .35rem;
+    content: "press ⌘/Ctrl+C"; position: absolute; top: -1.35rem; right: 0;
+    font-size: .72rem; color: #f85149; background: var(--panel); padding: 0 .35rem; border-radius: 4px;
   }
   .repo { display: inline-block; margin-top: .8rem; margin-right: 1.1rem; color: var(--muted); text-decoration: none; font-size: .85rem; }
   .repo:hover { color: var(--accent); }
