@@ -42,7 +42,7 @@ command is one click to copy.
 | [`speed.it2.sh`](https://github.com/TheTechNetwork/speed.it2.sh) | Worker behind `speed.it2.sh` |
 | [`hwid.it2.sh`](https://github.com/TheTechNetwork/hwid.it2.sh) | Worker behind `hwid.it2.sh` |
 | [`nuke.it2.sh`](https://github.com/TheTechNetwork/nuke.it2.sh) | Worker + TUI behind `nuke.it2.sh` |
-| [`2browse.it2.sh`](https://github.com/TheTechNetwork/2browse.it2.sh) | Worker behind `browse.it2.sh` (and legacy `2browse.it2.sh`) |
+| [`browse.it2.sh`](https://github.com/TheTechNetwork/browse.it2.sh) | Worker behind `browse.it2.sh` (and legacy `2browse.it2.sh`) |
 | [`Scripts-Public`](https://github.com/TheTechNetwork/Scripts-Public) | Canonical home of the scripts these workers serve (e.g. the HWID script) |
 
 ## How it works

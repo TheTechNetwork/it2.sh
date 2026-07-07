@@ -60,7 +60,7 @@ const SERVICES = [
     cmds: [
       { label: "Windows (PowerShell)", cmd: "irm browse.it2.sh | iex" },
     ],
-    repo: "https://github.com/TheTechNetwork/2browse.it2.sh",
+    repo: "https://github.com/TheTechNetwork/browse.it2.sh",
   },
 ];
 
