@@ -54,11 +54,11 @@ const SERVICES = [
     repo: "https://github.com/TheTechNetwork/nuke.it2.sh",
   },
   {
-    host: "2browse.it2.sh",
-    title: "2Browse",
-    blurb: "One-line launcher for Carifred's 2Browse (fresh, isolated browser session) — downloads, runs, and cleans up after itself, with a hosted fallback copy.",
+    host: "browse.it2.sh",
+    title: "Browse",
+    blurb: "One-line portable browser launcher — TUI menu (2Browse default), or add one in the path (browse.it2.sh/kmeleon). Downloads, runs, cleans up; vendor + mirror fallback.",
     cmds: [
-      { label: "Windows (PowerShell)", cmd: "irm 2browse.it2.sh | iex" },
+      { label: "Windows (PowerShell)", cmd: "irm browse.it2.sh | iex" },
     ],
     repo: "https://github.com/TheTechNetwork/2browse.it2.sh",
   },
